@@ -12,6 +12,8 @@
 #include<array>
 #include<utility>
 
+#include "trn.h"
+
 struct BindTableEntry {
 	const char *name;
 	mrb_value (*func)(mrb_state *mrb, mrb_value self);
@@ -53,7 +55,7 @@ static void bind(mrb_state *mrb, BindTableEntry *table, struct RClass *mod) {
 	}
 }
 
-extern "C" void mrb_transistor_bind_init(mrb_state *mrb, struct RClass *mod_transistor_ll) {
+extern "C" void mrb_transistor_bind_init(mrb_state *mrb) {
 	BindTableEntry bind_table[] = {
 		S<malloc>::MakeEntry("malloc"),
 		S<free>::MakeEntry("free"),
